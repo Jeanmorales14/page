@@ -30,10 +30,10 @@
 
  /* cambio de color el boton de la barrita navegacion de la seccion en la que esta el usuario*/
  header a.activo {
-    background-color: #ff52aa;
+   background-color: #ff52aa;
  }
 
- figure {
+ .header-figure {
    text-align: center;
    max-width: 150px;
 
@@ -61,8 +61,31 @@
  }
 
  article {
-  background-color: white;
-  padding: 30px;
-  border-radius: 20px;
-  margin: 50px
+   background-color: white;
+   padding: 30px;
+   border-radius: 20px;
+   margin: 50px
  }
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  max-width: 100%;
+  gap: 20px;
+  justify-items: center;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.galeria figure {
+  max-width: 300px;
+  text-align: center;
+}
+
+.galeria img,
+.galeria video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
