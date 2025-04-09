@@ -1,0 +1,68 @@
+ /*la pagina completa*/
+ body {
+   font-family: 'Poppins', sans-serif;
+   background-color: #f0f0f0;
+   margin: 0;
+   width: 100%;
+   min-height: 100vh;
+ }
+
+ /* Encabezaado con su navegacion */
+ header {
+   background: linear-gradient(#bb4effad, #0000ff7d);
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+ }
+
+ /*los botones de la barrita*/
+ header a {
+   color: white;
+   text-decoration: none;
+   padding: 10px 20px;
+   border-radius: 100px;
+ }
+
+ /* cambio de color el boton de la barrita navegacion al pasar el mouse*/
+ header a:hover {
+   background-color: #eb9bff;
+ }
+
+ /* cambio de color el boton de la barrita navegacion de la seccion en la que esta el usuario*/
+ header a.activo {
+    background-color: #ff52aa;
+ }
+
+ figure {
+   text-align: center;
+   max-width: 150px;
+
+   /*Imagen del encabezado*/
+   img {
+     width: 65%;
+     height: auto;
+     border-radius: 25px;
+   }
+ }
+
+
+ /*Estilo para el contenido de los modulos, se ocultan todos*/
+ .modulo {
+   display: none;
+   background-color: white;
+   padding: 20px;
+   border-radius: 20px;
+   margin: 50px;
+ }
+
+ /*Estilo para mostrar unicamente el modulo seleccionado*/
+ .modulo.activo {
+   display: block !important;
+ }
+
+ article {
+  background-color: white;
+  padding: 30px;
+  border-radius: 20px;
+  margin: 50px
+ }

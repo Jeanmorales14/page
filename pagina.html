@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Importo una fuente para cambiar la letra -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+  <script>
+    // Aca en la seccion de javascript manejamos el cambio de seccion con la barrita de navegacion
+    function cambiar(idSeccion) {
+      // .seccion extrae las secciones que hay en la barrita de navegacion
+      // .modulo extrae el contenido que se muestra cuando se cambia con la barrita  
+      // Remueve la clase 'activo' de todos los módulos y secciones para mantener solo el actual
+      document.querySelectorAll('.modulo, .seccion').forEach(el => el.classList.remove('activo'));
+      // Cambio el contenido en pantalla agregando la clase activo
+      document.getElementById(idSeccion).classList.add('activo');
+      // Muestro un color diferente en la barrita para la seccion seleccionada
+      let seccion = '[modulo="' + idSeccion + '"]';
+      document.querySelector(seccion).classList.add('activo');
+    }
+
+  </script>
+</head>
+
+<body>
+
+  <!-- Barrita de navegacion -->
+  <header>
+    <figure>
+      <img src="Jean.jpeg" alt="Foto de perfil" class="profile-pic">
+      <figcaption>Jean Morales Desarrollador Web</figcaption>
+    </figure>
+    <nav>
+      <a href="#perfil" class="seccion activo" modulo="perfil" onclick="cambiar('perfil')">Perfil</a>
+      <a href="#actividades" class="seccion" modulo="actividades" onclick="cambiar('actividades')">Actividades</a>
+      <a href="#conocimientos" class="seccion" modulo="conocimientos"
+        onclick="cambiar('conocimientos')">Conocimientos</a>
+      <a href="#interes" class="seccion" modulo="interes" onclick="cambiar('interes')">Intereses</a>
+      <a href="#galeria" class="seccion" modulo="galeria" onclick="cambiar('galeria')">Galería</a>
+      <a href="#contacto" class="seccion" modulo="contacto" onclick="cambiar('contacto')">Contáctame</a>
+    </nav>
+  </header>
+
+
+  <section class="modulo" id="perfil">
+    <article>
+      <h2>¿Quien Soy?</h2>
+      Apasionado por la tecnologia desde pequeño, creci viendo a familiares cercanos en areas como electronica,
+      redes, seguridad, entre otras... Lo cual desde pequeño me llevo a interesarme por la tecnologia para mi futuro
+      profesional.
+      A mis 20 años empece mi carrera laboral en el area de la informatica.
+      <br><br>
+      Inicie mi carrera con procesos de auditoria y certificacion de software bajo el rol de Analista QA, lo cual me
+      permitio conocer el mundo laboral
+      y como funciona el mundo del desarrollo, con el tiempo fui adquiriendo conocimiento de procesos de desarrollo
+      de software, lo cual me llevo
+      a interesarme por el desarrollo web y me motivo a estudiar mas para lograr conseguir un trabajo como
+      desarrollador.
+      <br><br>
+      Actualmente llevo dos años trabajando como desarrollador web, en donde he tenido la oportunidad de aprender de
+      diversas tecnologias y algunos lenguajes
+      de desarrollo, asi como conocer mas sobre el proceso que requiere que una aplicacion web se tranforme de una
+      simple idea a un producto final.
+      Ultimamente he querido aprender mas sobre diversas areas que van de la mano de este proceso de desarrollo,
+      como gestion de bases de datos, gestion de
+      infraestructura en la nube, entre otros.
+      </p>
+    </article>
+  </section>
+
+  <section class="modulo" id="actividades">
+    <h2>Actividades</h2>
+    <article>
+      <p>Estas son algunas de las tareas que realizo regularmente en proyectos de desarrollo web:</p>
+
+      <h3>🔧 Subtitulo</h3>
+      <ul>
+        <li>Construcción de páginas web adaptables a cualquier pantalla (Responsive)</li>
+        <li>Diseño de interfaces accesibles y fáciles de entender</li>
+        <li>Integración de APIs RESTful</li>
+        <li>Acompañamiento en procesos de desarrollo y despliegue</li>
+        <li>Automatización de tareas repetitivas</li>
+        <li>Participación de desarrollos en equipos</li>
+      </ul>
+
+      <h3>🛠 Tecnologías que uso día a día</h3>
+      <ul>
+        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript / TypeScript (Vue, Angular)</li>
+        <li><strong>Backend:</strong> JavaScript (Express), Java (Spring Boot), Python (FastAPI)</li>
+        <li><strong>Bases de datos:</strong> PostgreSQL</li>
+        <li><strong>DevOps:</strong> Docker (básico), AWS (básico), Git</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="modulo" id="conocimientos">
+    <article>
+      <h3>🛠 Tecnologías que uso día a día</h3>
+      <ul>
+        <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript / TypeScript (Vue, Angular)</li>
+        <li><strong>Backend:</strong> JavaScript (Express), Java (Spring Boot), Python (FastAPI)</li>
+        <li><strong>Bases de datos:</strong> PostgreSQL</li>
+        <li><strong>DevOps:</strong> Docker (básico), AWS (básico), Git</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="modulo" id="interes">
+    <h2>Links de interés</h2>
+    <article>
+      <p>Páginas que me han sido utiles para aprender y para innovar el estilo de mis paginas web:</p>
+      <ul>
+        <li><a href="https://platzi.com/">Platzi</a></li>
+        <li><a href="https://devdocs.io/">Documentaciones</a></li>
+        <li><a href="https://uiverse.io/">Libreria UI</a></li>
+        <li><a href="https://uicolors.app/">Paletas de Colores</a></li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="modulo" id="galeria">
+    <h2>Galería</h2>
+    <div class="galeria">
+      <figure>
+        <img src="proyecto1.jpg" alt="Captura del proyecto 1" width="300">
+        <figcaption>Dashboard de pagos para comercios</figcaption>
+      </figure>
+      <figure>
+        <img src="proyecto2.jpg" alt="Captura del proyecto 2" width="300">
+        <figcaption>Sitio web corporativo con diseño responsive</figcaption>
+      </figure>
+      <figure>
+        <img src="proyecto3.jpg" alt="Captura del proyecto 3" width="300">
+        <figcaption>Aplicación de pedidos con frontend en Vue</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="modulo" id="contacto">
+    <h2>Cotiza Conmigo</h2>
+    <form action="#" method="post">
+      <label for="nombre">Nombre:</label><br>
+      <input type="text" id="nombre" name="nombre" required><br><br>
+
+      <label for="correo">Correo:</label><br>
+      <input type="email" id="correo" name="correo" required><br><br>
+
+      <label for="mensaje">¿Que necesitas de mi?:</label><br>
+      <textarea id="mensaje" name="mensaje" rows="4" required></textarea><br><br>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+
+  <footer>
+    <p>&copy; 2025 Jean Morales | Todos los derechos reservados</p>
+  </footer>
+
+</body>
+
+</html>

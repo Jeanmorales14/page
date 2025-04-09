@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <!--Importamos el tipo de letra-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <title>Hobbies</title>
+    <style>
+        /*ESTILOS PARA TODOS LOS ELEMENTOS DE LA PAGINA*/
+        /*Estilos para la pagina completa*/
+        body {
+            overflow-x: hidden;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /*Estilo para los formularios de encuesta*/
+        form {
+            text-align: start;
+            background-color: #ecf3ff;
+            padding: 20px;
+            border-radius: 15px;
+            width: 500px;
+        }
+
+        /*Estilo para los campos de las encuestas*/
+        input {
+            margin: 10px;
+            border-radius: 30px;
+            color: grey;
+            padding: 15px;
+            border: none;
+        }
+
+        /*Estilo para que los campos de texto sean mas grandes*/
+        input[type=text] {
+            width: 200px;
+        }
+
+        /*Estilo para los botones*/
+        button {
+            background-color: #3339f8;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            width: 100%;
+            font-size: 17px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+        }
+        button:hover {
+            background-color: #9bb5ff;
+        }
+
+        /*Estilo para los textos*/
+        p {
+            font-size: 15px;
+            color: #585353;
+        }
+
+        /*Color para los titulos*/
+        h2, h3, h4 {
+            color: #151651;
+        }
+
+        /*Para el texto con enlaces*/
+        a {
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /*ESTILOS REUTILIZADOS EN DIFERENTES ELEMENTOS PARA AJUSTAR EL CONTENIDO*/
+
+        /*Estilo para dividir el contenido en columnas*/
+        .columnas {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        /*Estilo para centrar el contenido*/
+        .centrado {
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            justify-items: center;
+        }
+
+        /*Estilo para ordenar el contenido en filas y columnas*/
+        .lista {
+            display: flex;
+            flex-wrap: wrap;
+            white-space: pre-wrap;
+            align-items: center;
+            margin: -20px 0;
+        }
+
+        /*Estilo para que un elemento sea pequeño y se centre en pantalla*/
+        .pequeño {
+            max-width: 500px !important;
+            margin: auto !important;
+            padding: 50px !important;
+        }
+
+        /*Aplica margen a todos los lados*/
+        .margen {
+            margin: 30px;
+        }
+
+        /*Quita el margen a todos los lados*/
+        .no-margen {
+            margin: 0;
+        }
+
+        .separador {
+            width: 90%;
+            background-color: #24298b;
+            height: 4px;
+            place-self: center;
+            border-radius: 30px;
+        }
+
+        /*ESTILOS PARA EL CONTENIDO DE LA PAGINA*/
+        .footer {
+            background-color: #24298B;
+            color: white;
+            /*Para que siempre este abajo*/
+            position: relative;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .logo {
+                width: 100px;
+                height: auto;
+                border-radius: 60px;
+                margin: 10px 0
+            }
+        }
+
+        /*Estilos para la barrita de navegacion*/
+        .navbar {
+            background-color: #24298B;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /*Estilos para los botones de la barrita*/
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 100px;
+        }
+
+        /*Estilo para que cambie de color el boton de la barrita navegacion al pasar el mouse*/
+        .navbar a:hover {
+            background-color: #9bb5ff;
+        }
+
+        /*Estilo para que cambie de color el boton de la barrita navegacion de la seccion en la que esta el usuario*/
+        .navbar a.activo {
+            background-color: #5265ff;
+        }
+
+        /*Estilo para el logo del header*/
+        .logo {
+            width: 80px;
+            height: auto;
+            margin-left: 40px
+        }
+
+        /*Estilo para el contenido de los modulos, se ocultan todos*/
+        .modulo {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin: 50px;
+        }
+
+        /*Estilo para mostrar unicamente el modulo seleccionado*/
+        .modulo.activo {
+            display: block !important;
+        }
+
+        /*ESTILOS PARA LAS SECCIONES Y SUS ELEMENTOS*/
+
+        /*Banner de la pagina principal*/
+        .banner {
+            width: 50%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 30px;
+        }
+
+        /*Estilos para las redes sociales*/
+        .boton-red {
+            width: 40px;
+            cursor: pointer;
+        }
+
+        /*Estilos para el titulo de los formularios*/
+        .titulo-form {
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        /*Estilos para el collage*/
+        .foto-collage {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        /*Estilos para la imagen del collage*/
+        .foto-collage img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            place-self: center;
+        }
+
+        /*Estilos para los botones de los paises*/
+        .botones {
+            max-width: fit-content;
+            place-self: center;
+            border-style: groove;
+            border-radius: 30px;
+            padding: 5px 15px;
+            background-color: #c0d3ff;
+            border-color: #738cff;
+        }
+
+        /*Estilos para cada boton*/
+        .botones img {
+            width: 50px;
+            height: auto;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        /*Estilos para el boton que despliega el mensaje */
+        .desplegable {
+            background-color: #2225b1;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        /* Estilo del texto desplegable */
+        .desplegado {
+            display: none;
+            padding: 18px;
+            background-color: #ecf3ff;
+            border-radius: 15px;
+            text-align: start;
+            width: 70%;
+        }
+
+        /*Estilos para las recetas de cada pais*/
+        .pais-info {
+            background-color: #ecf3ff;
+            border-radius: 10px;
+            padding: 20px;
+            display: none;
+
+            p {
+                width: 500px;
+            }
+
+            ul {
+                width: 80%;
+            }
+        }
+        /*Para mostrar la informacion de un pais segun la bandera seleccionada*/
+        .pais-info.activo {
+            display: block !important;
+        }
+
+        /*Para el texto de la seccion contactenos*/
+        .contacto-persona {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            /*Para el enlace del numero telefonico*/
+            a {
+                margin-left: 10px;
+                color: #007BFF;
+            }
+            p {
+                margin-left: 10px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <!-- Barrita de navegacion -->
+    <header class="navbar">
+        <img src="./archivos/logo.png" alt="logo" class="logo">
+        <nav>
+            <a href="#inicio" class="seccion activo" modulo="inicio" onclick="cambiar('inicio')">Inicio</a>
+            <a href="#acerca" class="seccion" modulo="acerca" onclick="cambiar('acerca')">Acerca de</a>
+            <a href="#juegos" class="seccion" modulo="juegos" onclick="cambiar('juegos')">Juegos de mesa</a>
+            <a href="#fotografia" class="seccion" modulo="fotografia" onclick="cambiar('fotografia')">Fotografía</a>
+            <a href="#comida" class="seccion" modulo="comida" onclick="cambiar('comida')">Comida</a>
+            <a href="#contacto" class="seccion" modulo="contacto" onclick="cambiar('contacto')">Contáctenos</a>
+        </nav>
+    </header>
+    <!-- MODULOS -->
+    <!-- Modulo Inicio -->
+    <section id="inicio" class="modulo activo margen">
+        <div class="columnas margen">
+            <img src="./archivos/Banner.jpg" alt="Banner" class="banner margen">
+            <div class="margeen" style="margin: 0 30px;">
+                <h2>Falta de recursos para la realización de hobbies</h2>
+                <p>
+                    Desarrollar nuestros hobbies se ha convertido en todo un reto. <br>
+                    Lo mas dificil no es la falta de tiempo o la distraccion de las redes sociales, sino algo más
+                    simple:<br>
+                    <br>
+                    Y son los recursos necesarios para comenzar o para llevarlos a cabo durante mucho tiempo.
+                    En nuestra sociedad encontramos problematicas en todo lugar, desde jovenes que sueñan con crear
+                    música, hacer fotografica, practicar un deporte, entre otros.
+                    Como mínimo cada uno requiere de implementos basicos para su labor.
+                    Como un equipo de audio, una buena camara, una bicicleta o zapatillas para practicar el deporte que
+                    aman.<br>
+                    <br>
+                    Esta problematica afecta principalmente en familias que no cuentan con un gran recurso economico ya
+                    que son los que deben que elegir entre
+                    Invertir en implementos para sus hobbies o invertir en los gastos básicos para la vida.<br>
+                    <br>
+                    Es momento de replantear cómo podemos dejar al alcance de todos lo necesario para practicar de
+                    nuestros actividades y pasiones.
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Modulo Acerca De -->
+    <section id="acerca" class="modulo pequeño centrado">
+        <h2 class="no-margen">Acerca de Nosotros</h2>
+        <p>En nuestra página, queremos acompañarte en la bisqueda de nuevas actividades que despierten tu interes y amor
+            por la vida.
+            Queremos hacerte sonreir, vivir nuevas experiencias y que puedas conectar contigo mismo o con otras
+            personas.<br>
+            <br>
+            <strong>¡Nunca Es Tarde Para Descubrir Algo Nuevo Que Te Apasione!</strong>
+        </p>
+    </section>
+
+    <!-- Sección Juegos de Mesa -->
+    <section id="juegos" class="modulo margen">
+        <div class="columnas">
+            <div class="margen centrado">
+                <h2>Video Tutorial: Juego con Materiales Reciclables</h2>
+                <video width="100%" controls autoplay style="border-radius: 30px;">
+                    <source src="./archivos/juego-mesa.mp4" type="video/mp4">
+                </video>
+            </div>
+            <form class="margen">
+                <h3 class="titulo-form">¿Cuál Es Tu Juego Favorito?</h3>
+                <div class="columnas">
+                    <div>
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre">
+                    </div>
+                    <div>
+                        <label for="nombre">Apellido</label>
+                        <input type="text" id="nombre" name="nombre">
+                    </div>
+                </div>
+                <div class="columnas">
+                    <div>
+                        <label for="curso">Curso</label>
+                        <input type="text" id="curso" name="curso">
+                    </div>
+                    <div>
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" id="telefono" name="telefono">
+                    </div>
+                </div>
+                <h4>Selecciona Tu Juego Favorito:</h4>
+                <div class="lista">
+                    <input type="radio" id="ajedrez" name="juego" value="ajedrez">
+                    <label for="ajedrez">Ajedrez</label>
+                    <br>
+                    <input type="radio" id="parques" name="juego" value="parques">
+                    <label for="parques">Parqués</label>
+                    <br>
+                    <input type="radio" id="parques" name="juego" value="parques">
+                    <label for="parques">Domino</label>
+                    
+                    <br>
+                    <input type="radio" id="parques" name="juego" value="parques">
+                    <label for="parques">Cartas</label>
+                    <br>
+                    <input type="radio" id="uno" name="juego" value="uno">
+                    <label for="uno">UNO</label>
+                    <br><br>
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+        <div>
+
+        </div>
+    </section>
+
+    <!-- Sección Fotografía -->
+    <section id="fotografia" class="modulo margen centrado">
+        <div class="columnas centrado">
+            <div class="margen ">
+                <h2>Fotografía</h2>
+                <p class="marden">La fotografía es una de las mejores formas para capturar y mostrar lo que ves a tu
+                    alrededor.<br>
+                    Dicen que cada foto cuenta una historia, y tú eres quien decide qué historia contar. Puede ser un
+                    paisaje de la naturaleza, un atardecer en la ciudad,
+                    o incluso un momento cotidiano que, al capturarlo, se convierte en algo único.<br>
+                    <br>
+                    Hoy en día, no necesitas ser un experto de fotografía, ni tener una cámara profesional o el celular
+                    mas caro para tomar buenas fotos.<br>
+                    Con tu propio celular, una app de edicion y mucha imaginación puedes crear buenas fotografías que
+                    expresen lo que piensas o sientes.
+                </p>
+            </div>
+            <form class="margen">
+                <h3 class="titulo-form">¿Donde Prefieres Tomar Fotografías?</h3>
+                <div class="columnas">
+                    <div>
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre">
+                    </div>
+                    <div>
+                        <label for="nombre">Apellido</label>
+                        <input type="text" id="nombre" name="nombre">
+                    </div>
+                </div>
+                <div class="columnas">
+                    <div>
+                        <label for="curso">Curso</label>
+                        <input type="text" id="curso" name="curso">
+                    </div>
+                    <div>
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" id="telefono" name="telefono">
+                    </div>
+                </div>
+                <h4>Selecciona Tu Lugar Favorito Para Tomar Fotografías</h4>
+                <div class="lista">
+                    <input type="radio" id="bosques" name="fotografias" value="bosques">
+                    <label for="bosques">Bosques</label>
+                    <br>
+                    <input type="radio" id="ciudad" name="fotografias" value="ciudad">
+                    <label for="ciudad">Ciudad</label>
+                    <br>
+                    <input type="radio" id="playa" name="fotografias" value="playa">
+                    <label for="playa">Playa</label>
+                    <br>
+                    <input type="radio" id="museos" name="fotografias" value="museos">
+                    <label for="museos">Museos</label>
+                    <br>
+                    <input type="radio" id="eventos" name="fotografias" value="eventos">
+                    <label for="eventos">Eventos</label>
+                    <br><br>
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+        <div class="separador"></div>
+        <h2>Galería de Fotos</h2>
+        <div class="foto-collage">
+            <img src="./archivos/collage2.jpg" alt="Foto 1">
+            <img src="./archivos/collage4.jpg" alt="Foto 3">
+            <img src="./archivos/collage16.jpg" alt="Foto 15">
+            <img src="./archivos/collage5.jpg" alt="Foto 4">
+            <img src="./archivos/collage12.jpg" alt="Foto 11">
+            <img src="./archivos/collage13.jpg" alt="Foto 12">
+            <img src="./archivos/collage3.jpg" alt="Foto 2">
+            <img src="./archivos/collage7.jpg" alt="Foto 6">
+            <img src="./archivos/collage15.jpg" alt="Foto 14">
+            <img src="./archivos/collage8.jpg" alt="Foto 7">
+            <img src="./archivos/collage14.jpg" alt="Foto 13">
+            <img src="./archivos/collage6.jpg" alt="Foto 5">
+        </div>
+    </section>
+
+    <!-- Sección Comida -->
+    <section id="comida" class="modulo margen centrado">
+        <div class="margen centrado" style="margin-top: 0;">
+            <h2 class="no-margen">Video Tutorial: Receta</h2>
+            <video width="100%" controls autoplay style="border-radius: 30px; margin-top: 20px;">
+                <source src="./archivos/receta arroz.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="separador"></div>
+        <!-- Paises y recetas -->
+        <div class="margen centrado">
+            <h2 class="no-margen">Paises</h2>
+            <div class="botones margen">
+                <img src="./archivos/italia.png" alt="Italia" class="pais" data-pais="italia">
+                <img src="./archivos/colombia.png" alt="Colombia" class="pais" data-pais="colombia">
+                <img src="./archivos/china.png" alt="China" class="pais" data-pais="china">
+                <img src="./archivos/rusia.png" alt="Rusia" class="pais" data-pais="rusia">
+                <img src="./archivos/mexico.png" alt="Mexico" class="pais" data-pais="mexico">
+                <img src="./archivos/india.png" alt="India" class="pais" data-pais="india">
+            </div>
+            <!-- Contenidos ocultos para cada país -->
+            <div id="italia" class="pais-info">
+                <h2 class="no-margen">Italia</h2>
+                <div class="columnas" style="align-items: start;">
+                    <div class="centrado">
+                        <h3>Pasta Carbonara</h3>
+                        <p>La Pasta Carbonara es un plato emblemático de muy pocos ingredientes originario de Roma que
+                            surgió después de la Segunda Guerra Mundial.
+                            Su nombre podría derivar de los "carbonari" (carboneros) que la preparaban durante sus
+                            largas jornadas de trabajo.
+                        </p>
+                        <h4>¿Qué necesitas?</h4>
+                        <ul>
+                            <li>Espaguetis</li>
+                            <li>Tocineta</li>
+                            <li>Huevos</li>
+                            <li>Queso parmesano ó queso rallado)</li>
+                            <li>Queso pecorino (Opcional)</li>
+                            <li>Pimienta negra molida</li>
+                        </ul>
+                        <h4>Datos importantes:</h4>
+                        <ul>
+                            <li>No lleva crema de leche</li>
+                            <li>Los huevos deben quedar cremosos</li>
+                            <li>La pasta debe quedar "al dente", es decir, con solo un poquito de dureza</li>
+                            <li>El queso debe rallarse al momento de servir el plato</li>
+                        </ul>
+                    </div>
+                    <div class="centrado">
+                        <h3>Platos Típicos</h3>
+                        <p>Algunos de los platos mas representativos son:</p>
+                        <ul>
+                            <li>Pizza Margherita</li>
+                            <li>Lasagna</li>
+                            <li>Risotto alla Milanese</li>
+                            <li>Spaghetti alla Carbonara</li>
+                            <li>Ossobuco</li>
+                            <li>Tiramisu</li>
+                            <li>Frittata</li>
+                            <li>Gnocchi</li>
+                            <li>Caponata</li>
+                            <li>Arancini</li>
+                            <li>Focaccia</li>
+                            <li>Ravioli</li>
+                            <li>Polenta</li>
+                            <li>Pesto alla Genovese</li>
+                            <li>Vitello Tonnato</li>
+                            <li>Minestrone</li>
+                            <li>Cicchetti</li>
+                            <li>Cacciucco</li>
+                            <li>Panzanella</li>
+                            <li>Zuppa Toscana</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- Colombia -->
+            <div id="colombia" class="pais-info">
+                <h2 class="no-margen">Colombia</h2>
+                <div class="columnas" style="align-items: start;">
+                    <div class="centrado">
+                        <h3>Ajiaco Santafereño</h3>
+                        <p>El Ajiaco es una sopa tradicional bogotana que representa la mezcla de culturas indígena y
+                            española.
+                            Es un plato que surgió en la región andina y se ha convertido en uno de los más
+                            representativos de la gastronomía colombiana.
+                        </p>
+                        <h4>¿Qué necesitas?</h4>
+                        <ul>
+                            <li>Papa Trifasica (sabanera, pastusa y criolla)</li>
+                            <li>Gallina triolla</li>
+                            <li>Mazorca tierna</li>
+                            <li>Guascas (hierba aromática esencial)</li>
+                            <li>Crema de leche</li>
+                            <li>Alcaparras</li>
+                            <li>Aguacate</li>
+                        </ul>
+                        <h4>Datos importantes:</h4>
+                        <ul>
+                            <li>Las guascas son esenciales, dan el sabor característico</li>
+                            <li>La papa criolla debe deshacerse para espesar</li>
+                            <li>Se sirve con aguacate y crema de leche al gusto</li>
+                            <li>Tradicionalmente se acompaña con un plato de arroz</li>
+                        </ul>
+                    </div>
+                    <div class="centrado">
+                        <h3>Platos Típicos</h3>
+                        <p>Algunos de los platos mas representativos son:</p>
+                        <ul>
+                            <li>Bandeja Paisa</li>
+                            <li>Ajiaco</li>
+                            <li>Sancocho</li>
+                            <li>Arepa (diferentes tipos)</li>
+                            <li>Empanadas (diferentes tipos)</li>
+                            <li>Lechona</li>
+                            <li>Tamales</li>
+                            <li>Mondongo</li>
+                            <li>Cazuela de Mariscos</li>
+                            <li>Fritanga</li>
+                            <li>Changua</li>
+                            <li>Arroz Atollado</li>
+                            <li>Arroz con Coco</li>
+                            <li>Patacones</li>
+                            <li>Arepas de Huevo</li>
+                            <li>Cocido Boyacense</li>
+                            <li>Mamona</li>
+                            <li>Mango Biche</li>
+                            <li>Sobrebarriga</li>
+                            <li>Cholao</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--China-->
+            <div id="china" class="pais-info">
+                <h2 class="no-margen">China</h2>
+                <div class="columnas" style="align-items: start;">
+                    <div class="centrado">
+                        <h3>Pato Pekín</h3>
+                        <p>El Pato Pekín es uno de los platos más emblemáticos de la cocina china imperial, con más de
+                            600 años de historia.
+                            Originario de Beijing, era un plato exclusivo de la corte imperial china.
+                        </p>
+                        <h4>¿Qué necesitas?</h4>
+                        <ul>
+                            <li>Pato entero</li>
+                            <li>Salsa hoisin</li>
+                            <li>Crepes finos chinos</li>
+                            <li>Cebolla verde</li>
+                            <li>Pepino</li>
+                            <li>Especias chinas</li>
+                        </ul>
+                        <h4>Datos importantes:</h4>
+                        <ul>
+                            <li>La piel del pato debe quedar crujiente</li>
+                            <li>Se necesitan varios días de preparación</li>
+                            <li>Se come envuelto en crepes finos</li>
+                            <li>Tradicionalmente se presenta en tres presentaciones</li>
+                        </ul>
+                    </div>
+                    <div class="centrado">
+                        <h3>Platos Típicos</h3>
+                        <p>Algunos de los platos mas representativos son:</p>
+                        <ul>
+                            <li>Pato Pekín</li>
+                            <li>Dim Sum</li>
+                            <li>Mapo Tofu</li>
+                            <li>Hot Pot</li>
+                            <li>Dumplings</li>
+                            <li>Chow Mein</li>
+                            <li>Kung Pao Chicken</li>
+                            <li>Rollitos de Primavera</li>
+                            <li>Sopa de Wonton</li>
+                            <li>Arroz Frito</li>
+                            <li>Pollo Agridulce</li>
+                            <li>Xiaolongbao</li>
+                            <li>Huevos de Mil Años</li>
+                            <li>Dan Dan Noodles</li>
+                            <li>Pato Laqueado</li>
+                            <li>Baozi</li>
+                            <li>Cerdo Dong Po</li>
+                            <li>Sopa de Aleta de Tiburón</li>
+                            <li>Nido de Golondrina</li>
+                            <li>Tofu Centenario</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--Mexico-->
+            <div id="mexico" class="pais-info">
+                <h2 class="no-margen">México</h2>
+                <div class="columnas" style="align-items: start;">
+                    <div class="centrado">
+                        <h3>Tacos al Pastor</h3>
+                        <p>Los tacos al pastor son una fusión cultural entre la cocina mexicana y la influencia de
+                            inmigrantes libaneses.
+                            Surgieron en los años 1960 en Ciudad de México, adaptando el shawarma árabe a los sabores
+                            mexicanos.
+                        </p>
+                        <h4>¿Qué necesitas?</h4>
+                        <ul>
+                            <li>Carne de cerdo</li>
+                            <li>Achiote y especias</li>
+                            <li>Piña</li>
+                            <li>Tortillas de maíz</li>
+                            <li>Cebolla</li>
+                            <li>Cilantro</li>
+                        </ul>
+                        <h4>Datos importantes:</h4>
+                        <ul>
+                            <li>La carne debe marinarse por horas</li>
+                            <li>Se cocina en un trompo giratorio vertical</li>
+                            <li>La piña es esencial para el sabor dulce</li>
+                            <li>Las tortillas deben ser calentadas</li>
+                        </ul>
+                    </div>
+                    <div class="centrado">
+                        <h3>Platos Típicos</h3>
+                        <p>Algunos de los platos mas representativos son:</p>
+                        <ul>
+                            <li>Tacos al Pastor</li>
+                            <li>Mole Poblano</li>
+                            <li>Enchiladas</li>
+                            <li>Pozole</li>
+                            <li>Chiles en Nogada</li>
+                            <li>Cochinita Pibil</li>
+                            <li>Tamales</li>
+                            <li>Guacamole</li>
+                            <li>Quesadillas</li>
+                            <li>Chilaquiles</li>
+                            <li>Birria</li>
+                            <li>Ceviche</li>
+                            <li>Elote</li>
+                            <li>Tlayudas</li>
+                            <li>Churros</li>
+                            <li>Sopes</li>
+                            <li>Barbacoa</li>
+                            <li>Chiles Rellenos</li>
+                            <li>Tostadas</li>
+                            <li>Pambazos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--Rusia-->
+            <div id="rusia" class="pais-info">
+                <h2 class="no-margen">Rusia</h2>
+                <div class="columnas" style="align-items: start;">
+                    <div class="centrado">
+                        <h3>Borsch</h3>
+                        <p>El Borsch es una sopa tradicional rusa que se ha convertido en un símbolo de la cocina
+                            eslava.
+                            Sus orígenes se remontan al siglo XIV y era inicialmente una sopa de hierbas silvestres.
+                        </p>
+                        <h4>¿Qué necesitas?</h4>
+                        <ul>
+                            <li>Remolacha fresca</li>
+                            <li>Carne de res</li>
+                            <li>Col</li>
+                            <li>Papas</li>
+                            <li>Zanahorias</li>
+                            <li>Crema agria</li>
+                        </ul>
+                        <h4>Datos importantes:</h4>
+                        <ul>
+                            <li>El color debe ser rojo intenso</li>
+                            <li>Se sirve caliente o frío</li>
+                            <li>La crema agria es esencial</li>
+                            <li>Se acompaña con pan negro</li>
+                        </ul>
+                    </div>
+                    <div class="centrado">
+                        <h3>Platos Típicos</h3>
+                        <p>Algunos de los platos mas representativos son:</p>
+                        <ul>
+                            <li>Borsch</li>
+                            <li>Pelmeni</li>
+                            <li>Beef Stroganoff</li>
+                            <li>Caviar Negro</li>
+                            <li>Shchi</li>
+                            <li>Olivier Salad</li>
+                            <li>Blini</li>
+                            <li>Pirozhki</li>
+                            <li>Ukha</li>
+                            <li>Kvass</li>
+                            <li>Kholodets</li>
+                            <li>Syrniki</li>
+                            <li>Sbiten</li>
+                            <li>Rassolnik</li>
+                            <li>Kotlety</li>
+                            <li>Vareniki</li>
+                            <li>Okroshka</li>
+                            <li>Beef Zharkoe</li>
+                            <li>Kompot</li>
+                            <li>Medovik</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--India-->
+            <div id="india" class="pais-info">
+                <h2 class="no-margen">India</h2>
+                <div class="columnas" style="align-items: start;">
+                    <div class="centrado">
+                        <h3>Butter Chicken</h3>
+                        <p>El Butter Chicken fue creado en los años 1950 en el restaurante Moti Mahal en Delhi.
+                            Surgió como una solución para aprovechar el pollo tandoori sobrante, creando una salsa
+                            cremosa y especiada.
+                        </p>
+                        <h4>¿Qué necesitas?</h4>
+                        <ul>
+                            <li>Pollo</li>
+                            <li>Yogur</li>
+                            <li>Mantequilla (ghee)</li>
+                            <li>Tomates</li>
+                            <li>Especias (garam masala)</li>
+                            <li>Crema de leche</li>
+                        </ul>
+                        <h4>Datos importantes:</h4>
+                        <ul>
+                            <li>El pollo debe marinarse</li>
+                            <li>Las especias son fundamentales</li>
+                            <li>La salsa debe ser cremosa</li>
+                            <li>Se acompaña con naan o arroz</li>
+                        </ul>
+                    </div>
+                    <div class="centrado">
+                        <h3>Platos Típicos</h3>
+                        <p>Algunos de los platos mas representativos son:</p>
+                        <ul>
+                            <li>Butter Chicken</li>
+                            <li>Biryani</li>
+                            <li>Tikka Masala</li>
+                            <li>Samosas</li>
+                            <li>Dal Makhani</li>
+                            <li>Naan</li>
+                            <li>Palak Paneer</li>
+                            <li>Tandoori Chicken</li>
+                            <li>Vindaloo</li>
+                            <li>Malai Kofta</li>
+                            <li>Rogan Josh</li>
+                            <li>Chapati</li>
+                            <li>Dosa</li>
+                            <li>Chole Bhature</li>
+                            <li>Idli</li>
+                            <li>Korma</li>
+                            <li>Rasam</li>
+                            <li>Vada Pav</li>
+                            <li>Pani Puri</li>
+                            <li>Gulab Jamun</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separador"></div>
+        <div class="margen centrado">
+            <!-- Botón para mostrar el contenido desplegable -->
+            <button class="desplegable">¿Por qué es importante compartir en familia?</button>
+            <div class="desplegado margen">
+                <p>Compartir en familia fortalece los lazos y nos mantiene conectados.<br>
+                    Ya sea un almuerzo, ver una película o cualquier actividad, esos momentos crean recuerdos
+                    valiosos.<br>
+                    No se trata solo de pasar tiempo juntos, sino de darles a nuestros seres queridos tiempo y
+                    atención.<br>
+                    Aunque parezca simple, tiene un gran impacto en la relación y estabilidad familiar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="modulo pequeño centrado">
+        <h2 class="no-margen">Contáctenos</h2>
+        <div class="contacto-persona">
+            <a href="https://wa.me/+573169754317" target="_blank">
+                <img src="./archivos/ws.png" alt="WhatsApp1" class="boton-red">
+            </a>
+            <p>
+                <strong>Mara Sofía Brausin:</strong>      
+                <a href="https://wa.me/+573169754317" target="_blank">316 975 4317</a>    
+            </p>
+        </div>
+        <div class="contacto-persona">
+            <a href="https://wa.me/+573024479380" target="_blank">
+                <img src="./archivos/ws.png" alt="WhatsApp2" class="boton-red">
+            </a>
+            <p>              
+                <strong>Jabes Alarcón:</strong>
+                <a href="https://wa.me/+573024479380" target="_blank">302 447 9380</a>
+            </p>
+            
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <!-- Pie de página -->
+    <footer class="footer">
+        <h1 style="margin: auto 10px;">Hobbies</h1>
+        <img src="./archivos/logo-fondo.jpg" alt="Logo" class="logo">
+        <div style="margin-right: 20px;">
+            <a href="https://tiktok.com/@mar.brau" target="_blank">
+                <img src="./archivos/tiktok.png" alt="TikTok1" class="boton-red">
+            </a>
+            <a href="https://instagram.com/@mar.brau" target="_blank">
+                <img src="./archivos/instagram.png" alt="Instagram1" class="boton-red">
+            </a>
+            <a href="https://tiktok.com/@jabesz1307" target="_blank">
+                <img src="./archivos/tiktok.png" alt="TikTok2" class="boton-red">
+            </a>
+            <a href="https://instagram.com/@jabesss_alarcon" target="_blank">
+                <img src="./archivos/instagram.png" alt="Instagram2" class="boton-red">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Aca en la seccion de javascript manejamos el cambio de seccion con la barrita de navegacion
+        function cambiar(idSeccion) {
+            // .seccion extrae las secciones que hay en la barrita de navegacion
+            // .modulo extrae el contenido que se muestra cuando se cambia con la barrita  
+            // Remueve la clase 'activo' de todos los módulos y secciones para mantener solo el actual
+            document.querySelectorAll('.modulo, .seccion').forEach(el => el.classList.remove('activo'));
+            // Cambio el contenido en pantalla agregando la clase activo
+            document.getElementById(idSeccion).classList.add('activo');
+            // Muestro un color diferente en la barrita para la seccion seleccionada
+            let seccion = '[modulo="' + idSeccion + '"]';
+            document.querySelector(seccion).classList.add('activo');
+        }
+
+        //para cambiar el contenido de cada pais usamos un metodo integrado en el ciclo for
+        document.querySelectorAll('.pais').forEach(function (img) {
+            img.addEventListener('click', function () {
+                const pais = img.getAttribute('data-pais'); 
+                // Ocultamos todos los contenidos para evitar errores
+                document.querySelectorAll('.pais-info').forEach(function (contenido) {
+                    contenido.style.display = 'none';
+                });
+                // Mostramos el contenido seleccionado
+                document.getElementById(pais).style.display = 'block';
+            });
+        });
+
+        //Para abrir el mensaje con la importancia de compartir en familia
+        document.querySelectorAll('.desplegable').forEach(function (desplegable) {
+            desplegable.addEventListener('click', function () {
+                this.classList.toggle('active');
+                // Obtener el contendor del mensaje
+                var mensaje = this.nextElementSibling;
+
+                // Cuando el mensaje esta abierto se cierra
+                if (mensaje.style.display === "block") {
+                    mensaje.style.display = "none";
+                } else {
+                    mensaje.style.display = "block";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
